@@ -5,15 +5,17 @@ namespace App\Http\Controllers\BackEnd;
 
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 class Users extends BackEndController
 {
-    public function index()
+    public function __construct(User $model)
     {
-        $users=User::paginate(10);
-        return view('back-end.users.index',compact('users'));
+        parent::__construct($model);
     }
+
+
 
     public function create()
     {
