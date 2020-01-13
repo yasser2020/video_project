@@ -25,6 +25,8 @@
                     <div class="card-body">
                         <form action="{{route('users.store')}}" method="post">
                                 @include('back-end.users.form')
+                            <button type="submit" class="btn btn-primary pull-right">Add {{$modual_name}}</button>
+                            <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>

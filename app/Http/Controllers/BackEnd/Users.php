@@ -17,10 +17,7 @@ class Users extends BackEndController
 
 
 
-    public function create()
-    {
-     return view('back-end.users.create');
-    }
+
     public function store(Request $request)
     {
         User::create([
@@ -30,11 +27,7 @@ class Users extends BackEndController
         ]);
         return redirect()->route('users.index');
     }
-    public function edit($id)
-    {
-        $user=User::findOrFail($id);
-        return view('back-end.users.edit',compact('user'));
-    }
+
     public function update($id,Request $request)
     {
         $user=User::findOrFail($id);
@@ -47,11 +40,9 @@ class Users extends BackEndController
            $request_data['password']->$request->password;
         }
         $user->update($request_data);
+        return redirect()->route('users.index');
     }
-    public function destroy($id)
-    {
-          $user=User::findOrFail($id);
-          $user->delete();
-          return redirect()->route('users.index');
-    }
+
+
+
 }

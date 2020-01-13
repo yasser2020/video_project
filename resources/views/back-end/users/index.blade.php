@@ -64,13 +64,13 @@ $pageDes="Here you can edit - update -delete users";
                                    </td>
                                    <td class="text-right">
                                        {{-- Edit Button --}}
-                                       <div class="row col-md-4 float-right">
-                                       <div class="col-md-2">
+                                       <div class="row col-md-8 float-right">
+                                       <div class="col-md-4">
                                        <a href="{{route('users.edit',['id'=>$user->id])}}" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Edit {{$modual_name}}">
                                            <i class="material-icons">edit</i>
                                        </a>
                                        </div>
-                                       <div class="col-md-2">
+                                       <div class="col-md-4">
                                             {{--  form for delete button--}}
                                        <form action="{{route('users.destroy',['id'=>$user->id])}}" method="post">
                                            @csrf
