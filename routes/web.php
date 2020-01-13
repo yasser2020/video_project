@@ -19,7 +19,8 @@
 Route::namespace('BackEnd')->prefix('admin')->group(function(){
 
     Route::get('/','Home@index');
-    Route::get('/users','Users@index');
+//    users route
+    Route::resource('users','Users')->except('show','delete');
 
 });
 
@@ -27,6 +28,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

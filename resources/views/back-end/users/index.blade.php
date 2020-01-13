@@ -14,7 +14,6 @@ $pageDes="Here you can edit - update -delete users";
             {{$title_page}}
         @endslot
     @endcomponent
-    <h1>{{$title_page}}</h1>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -25,7 +24,7 @@ $pageDes="Here you can edit - update -delete users";
                             <p class="card-category"> {{$pageDes}}</p>
                         </div>
                         <div class="col-md-4 text-right">
-                            <a href="#pablo" class="btn btn-info btn-round">
+                            <a href="{{route('users.create')}}" class="btn btn-info btn-round">
                                 {{'Add '.$modual_name}}
                             </a>
                         </div>
@@ -63,13 +62,25 @@ $pageDes="Here you can edit - update -delete users";
                                    <td>
                                        {{$user->email}}
                                    </td>
-                                   <td class="td-actions text-right">
-                                       <button type="button" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Edit {{$modual_name}}">
+                                   <td class="text-right">
+                                       {{-- Edit Button --}}
+                                       <div class="row col-md-4 float-right">
+                                       <div class="col-md-2">
+                                       <a href="{{route('users.edit',['id'=>$user->id])}}" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Edit {{$modual_name}}">
                                            <i class="material-icons">edit</i>
-                                       </button>
-                                       <button type="button" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Remove {{$modual_name}} ">
+                                       </a>
+                                       </div>
+                                       <div class="col-md-2">
+                                            {{--  form for delete button--}}
+                                       <form action="{{route('users.destroy',['id'=>$user->id])}}" method="post">
+                                           @csrf
+                                           @method('delete')
+                                       <button type="submit" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Remove {{$modual_name}} ">
                                            <i class="material-icons">close</i>
                                        </button>
+                                       </form>
+                                       </div>
+                                       </div>
                                    </td>
                                </tr>
                                 @endforeach
