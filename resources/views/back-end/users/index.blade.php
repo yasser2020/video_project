@@ -1,9 +1,5 @@
 @extends('back-end.layout.app')
-@php
-$modual_name="Users";
-$title_page=$modual_name." Controller";
-$pageDes="Here you can edit - update -delete users";
-        @endphp
+
 @section('title')
     {{$title_page}}
 @endsection
@@ -25,7 +21,7 @@ $pageDes="Here you can edit - update -delete users";
                         </div>
                         <div class="col-md-4 text-right">
                             <a href="{{route('users.create')}}" class="btn btn-info btn-round">
-                                {{'Add '.$modual_name}}
+                                {{'Add '.$smodual_name}}
                             </a>
                         </div>
                     </div>
@@ -66,7 +62,7 @@ $pageDes="Here you can edit - update -delete users";
                                        {{-- Edit Button --}}
                                        <div class="row col-md-8 float-right">
                                        <div class="col-md-4">
-                                       <a href="{{route('users.edit',['id'=>$user->id])}}" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Edit {{$modual_name}}">
+                                       <a href="{{route('users.edit',['id'=>$user->id])}}" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Edit {{$smodual_name}}">
                                            <i class="material-icons">edit</i>
                                        </a>
                                        </div>
@@ -75,7 +71,7 @@ $pageDes="Here you can edit - update -delete users";
                                        <form action="{{route('users.destroy',['id'=>$user->id])}}" method="post">
                                            @csrf
                                            @method('delete')
-                                       <button type="submit" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Remove {{$modual_name}} ">
+                                       <button type="submit" rel="tooltip" title="" class="btn btn-white btn-link btn-sm" data-original-title="Remove {{$smodual_name}} ">
                                            <i class="material-icons">close</i>
                                        </button>
                                        </form>
@@ -86,6 +82,7 @@ $pageDes="Here you can edit - update -delete users";
                                 @endforeach
                             </tbody>
                         </table>
+                        {{$users->links()}}
                     </div>
                 </div>
             </div>

@@ -1,9 +1,5 @@
 @extends('back-end.layout.app')
-@php
-    $modual_name="Users";
-    $title_page="Create ".$modual_name;
-    $pageDes="Here you can create users";
-@endphp
+
 @section('title')
     {{$title_page}}
 @endsection
