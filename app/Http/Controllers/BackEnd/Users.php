@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\BackEnd;
-
-
-
+use App\Http\Requests\BackEnd\Users\Store;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -15,34 +13,28 @@ class Users extends BackEndController
         parent::__construct($model);
     }
 
-
-
-
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $request_data=$request->all();
+        $request_data['password']= Hash::make($request_data['password']);
+        $this->model->create($request_data);
         return redirect()->route('users.index');
     }
 
     public function update($id,Request $request)
     {
-        $user=User::findOrFail($id);
-        $request_data=[
-            'name'=>$request->name,
-            'email'=>$request->email
-        ];
-        if(request()->has('password') && $request->get('password')!="")
+        $this->model->findOrFail($id);
+        $request_data=$request->all();
+        if(isset($request_data['password'])&& isset($request_data['password'])!="")
         {
-           $request_data['password']->$request->password;
+            $request_data['password']= Hash::make($request_data['password']);
         }
-        $user->update($request_data);
+        else
+        {
+            unset($request_data['password']);
+        }
+        $this->model->update($request_data);
         return redirect()->route('users.index');
     }
-
-
 
 }
